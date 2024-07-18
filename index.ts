@@ -6,7 +6,7 @@ type WriteToStorageInput<T = unknown> = {
 
 type ReadFromStorage<T> = Omit<WriteToStorageInput<T>, "data">;
 
-export function readFromLocalStorage<T>({ id, tableName }: ReadFromStorage<T>) {
+export function readFromLocalStorage<T>({ id, tableName }: ReadFromStorage<T>): T | null {
   try {
     const item = localStorage.getItem(`${tableName}-${id}`);
     return item ? JSON.parse(item) : null;
@@ -20,7 +20,7 @@ export function writeToLocalStorage<T>({
   tableName,
   id,
   data,
-}: WriteToStorageInput<T>) {
+}: WriteToStorageInput<T>): boolean {
   try {
     const item = JSON.stringify(data);
     localStorage.setItem(`${tableName}-${id}`, item);
