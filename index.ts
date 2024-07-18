@@ -1,5 +1,5 @@
 type WriteToStorageInput<T = unknown> = {
-  tableName: "products" | "addresses" | "cards" | "carts";
+  tableName: string;
   id: string;
   data: T;
 };
